@@ -1,122 +1,359 @@
 ---
 layout: default
 ---
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+Get Started {#getting-started}
+===========
 
-[Link to another page](another-page).
+::: {.meta}
+:::
 
-There should be whitespace between paragraphs.
+::: {.toctree}
+Add Analytics \<add-aws-mobile-analytics\> Add User Sign-in
+\<add-aws-mobile-user-sign-in\> Add Push Notifications
+\<add-aws-mobile-push-notifications\> Add User File Storage
+\<add-aws-mobile-user-data-storage\> Add Serverless Backend (AWS
+AppSync) \<add-aws-mobile-serverless-backend\> Add Cloud Logic
+\<add-aws-mobile-cloud-logic\> Add Messaging
+\<add-aws-mobile-messaging\>
+:::
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+::: {#add-aws-mobile-sdk}
+Choose your platform:
+:::
 
-# [](#header-1)Header 1
+  ------------------------------------------------------------------------ ---------------------------------------------------------------------------- ------------------------------------------------------------------
+  [![image](images/android-java.png)](getting-started.html#android-java)   [![image](images/android-kotlin.png)](getting-started.html#android-kotlin)   [![image](images/ios-swift.png)](getting-started.html#ios-swift)
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+  ------------------------------------------------------------------------ ---------------------------------------------------------------------------- ------------------------------------------------------------------
 
-## [](#header-2)Header 2
+::: {.container .option}
 
-> This is a blockquote following a header.
+Android - Java
+
+:   ::: {#android-java}
+    Get started building a cloud-powered Android app using the AWS
+    Amplify CLI and the AWS SDK for Android. This page guides you
+    through setting up an initial backend and integrating the SDK into
+    your app.
+    :::
+
+Android - Kotlin
+
+:   ::: {#android-kotlin}
+    Get started building a cloud-powered Android app using the AWS
+    Amplify CLI and the AWS SDK for Android. This page guides you
+    through setting up an initial backend and integrating the SDK into
+    your app.
+    :::
+
+iOS - Swift
+
+:   ::: {#ios-swift}
+    Get started building a cloud-powered iOS app using the AWS Amplify
+    CLI and the AWS SDK for iOS. This page guides you through setting up
+    an initial backend and integrating the SDK into your app.
+    :::
+:::
+
+Step 1: Set Up Your Development Environment {#add-aws-mobile-sdk-basic-setup-prerequisites}
+-------------------------------------------
+
+We strongly recommend that you use the Amplify CLI for building the
+serverless backend for your app. If you have already installed the CLI,
+skip ahead to
+`Step 2 <add-aws-mobile-sdk-basic-setup>`{.interpreted-text role="ref"}.
+
+-   [Sign up for an AWS
+    Account](https://portal.aws.amazon.com/billing/signup?redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start).
+-   Install [Node.js](https://nodejs.org/) and npm (if they are not
+    already installed).
+
+::: {.note}
+::: {.admonition-title}
+Note
+:::
+
+Verify that you are running at least Node.js version 8.x or greater and
+npm version 5.x or greater by running `node -v`{.sourceCode} and
+`npm -v`{.sourceCode} in a terminal/console window. Older versions
+aren\'t supported and might generate errors.
+:::
+
+To install and configure the Amplify CLI globally, run the following
+commands in a terminal window.
+
+``` {.sourceCode .bash}
+$ npm install -g @aws-amplify/cli
+
+$ amplify configure
+```
+
+Minimum requirements for your development environment are as follows.
+
+> ::: {.container .option}
 >
-> When something is important enough, you do it even if the odds are not in your favor.
+> Android - Java
+>
+> :   -   Choose the Android Java app project you want to integrate with
+>         an AWS backend.
+>     -   [Install Android
+>         Studio](https://developer.android.com/studio/index.html#downloads)
+>         version 2.33 or higher.
+>     -   Install Android SDK for API level 23 (Android SDK 6.0).
+>
+> Android - Kotlin
+>
+> :   -   Choose the Android Kotlin app project you want to integrate
+>         with an AWS backend.
+>     -   [Install Android
+>         Studio](https://developer.android.com/studio/index.html#downloads)
+>         version 2.33 or higher.
+>     -   Install Android SDK for API level 23 (Android SDK 6.0).
+>
+> iOS - Swift
+>
+> :   -   Choose the iOS app project you want to integrate with an AWS
+>         backend.
+>     -   [Install Xcode](https://developer.apple.com/xcode/downloads/)
+>         version 8.0 or later.
+> :::
 
-### [](#header-3)Header 3
+Step 2: Set Up Your Backend {#add-aws-mobile-sdk-basic-setup}
+---------------------------
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+1.  The CLI prompts you for configuration parameters.
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+    > ::: {.container .option}
+    >
+    > Android - Java
+    >
+    > :   In a terminal window, navigate to your project folder (the
+    >     folder that typically contains your project level
+    >     `build.gradle`{.interpreted-text role="file"}), and add the
+    >     SDK to your app.
+    >
+    > > ``` {.sourceCode .none}
+    > > $ cd ./YOUR_PROJECT_FOLDER
+    > > $ amplify init
+    > > ```
+    >
+    > Android - Kotlin
+    >
+    > :   In a terminal window, navigate to your project folder (the
+    >     folder that typically contains your project level
+    >     `build.gradle`{.interpreted-text role="file"}), and add the
+    >     SDK to your app.
+    >
+    > > ``` {.sourceCode .none}
+    > > $ cd ./YOUR_PROJECT_FOLDER
+    > > $ amplify init
+    > > ```
+    >
+    > iOS - Swift
+    >
+    > :   In a terminal window, navigate to your project folder (the
+    >     folder that typically contains your project level
+    >     `xcodeproj`{.interpreted-text role="file"} file), and add the
+    >     SDK to your app.
+    >
+    > > ``` {.sourceCode .none}
+    > > $ cd ./YOUR_PROJECT_FOLDER
+    > > $ amplify init
+    > > ```
+    > :::
 
-#### [](#header-4)Header 4
+2.  To create your backend AWS resources and add a configuration file to
+    your app, run the following:
 
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
+    ::: {.container .option}
 
-##### [](#header-5)Header 5
+    Android - Java
 
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
+    :   ``` {.sourceCode .bash}
+        $ amplify push
+        ```
 
-###### [](#header-6)Header 6
+    Android - Kotlin
 
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
+    :   ``` {.sourceCode .none}
+        $ amplify push
+        ```
 
-### There's a horizontal rule below this.
+    iOS - Swift
 
-* * *
+    :   ``` {.sourceCode .none}
+        $ amplify push
+        ```
 
-### Here is an unordered list:
+        In the Finder, navigate to the folder containing your app
+        `.xcodeproj`{.interpreted-text role="file"} file. From there,
+        drag `awsconfiguration.json`{.sourceCode} to Xcode under the top
+        Project Navigator folder (the folder name should match your
+        Xcode project name). In the `Options`{.interpreted-text
+        role="guilabel"} dialog box that appears, do the following:
 
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
+        -   Clear the `Copy items if needed`{.interpreted-text
+            role="guilabel"} check box.
+        -   Choose `Create groups`{.interpreted-text role="guilabel"},
+            and then choose `Next`{.interpreted-text role="guilabel"}.
+    :::
 
-### And an ordered list:
+3.  To verify that the CLI is set up for your app, run the following
+    command. The CLI displays a status table with no resources listed.
+    As you add categories to your app, backend resources created for
+    your app are listed in this table.
 
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
+    ``` {.sourceCode .none}
+    $ amplify status
+    | Category | Resource name | Operation | Provider plugin |
+    | -------- | ------------- | --------- | --------------- |
+    ```
 
-### And a nested list:
+    Use the steps in the next section to configure the connection
+    between your app and the serverless backend.
 
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
+Step 3: Connect to Your Backend {#add-aws-mobile-sdk-connect-to-your-backend}
+-------------------------------
 
-### Small image
+Perform the following steps to set up a connection to AWS services that
+you\'ll use in the Get Started section of this guide.
 
-![](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
+::: {.container .option}
 
-### Large image
+Android - Java
 
-![](https://guides.github.com/activities/hello-world/branching.png)
+:   1.  Add dependencies to your `app/build.gradle`{.interpreted-text
+        role="file"}, and then choose `Sync Now`{.interpreted-text
+        role="guilabel"} on the upper-right side of Android Studio.
+        These libraries enable basic AWS functions, like credentials and
+        analytics.
 
+        ``` {.sourceCode .java}
+        dependencies {
+            implementation 'com.amazonaws:aws-android-sdk-core:2.6.+'
+        }
+        ```
 
-### Definition lists can be used with HTML syntax.
+    2.  Your `AndroidManifest.xml`{.interpreted-text role="file"} must
+        contain the following:
 
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
+        ``` {.sourceCode .xml}
+        <uses-permission android:name="android.permission.INTERNET"/>
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+        ```
 
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
+    Your app is now ready for you to add cloud-powered features. We
+    recommend
+    `adding analytics <add-aws-mobile-analytics>`{.interpreted-text
+    role="ref"} as your first feature.
 
-```
-The final element.
-```
+Android - Kotlin
+
+:   1.  Add dependencies to your `app/build.gradle`{.interpreted-text
+        role="file"}, and then choose `Sync Now`{.interpreted-text
+        role="guilabel"} on the upper-right side of Android Studio.
+        These libraries enable basic AWS functions, like credentials and
+        analytics.
+
+        ``` {.sourceCode .java}
+        dependencies {
+            implementation 'com.amazonaws:aws-android-sdk-core:2.6.+'
+        }
+        ```
+
+    2.  Your `AndroidManifest.xml`{.interpreted-text role="file"} must
+        contain the following:
+
+        ``` {.sourceCode .xml}
+        <uses-permission android:name="android.permission.INTERNET"/>
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+        ```
+
+    Your app is now ready for you to add cloud-powered features. We
+    recommend
+    `adding analytics <add-aws-mobile-analytics>`{.interpreted-text
+    role="ref"} as your first feature.
+
+iOS - Swift
+
+:   1.  Install Cocoapods. From a terminal window run the following:
+
+        ``` {.sourceCode .none}
+        sudo gem install cocoapods
+        ```
+
+    2.  Create `Podfile`{.interpreted-text role="file"}. From a terminal
+        window, navigate to the directory that contains your project\'s
+        `.xcodeproj`{.interpreted-text role="file"} file and run the
+        following:
+
+        > ``` {.sourceCode .none}
+        > pod init
+        > ```
+
+    3.  Open `Podfile`{.interpreted-text role="file"} in a text editor
+        and add the pod for core AWS Mobile SDK components to your
+        build.
+
+        ``` {.sourceCode .none}
+        platform :ios, '9.0'
+        target :'YOUR-APP-NAME' do
+            use_frameworks!
+
+            pod 'AWSCore', '~> 2.6.13'
+
+            # other pods
+        end
+        ```
+
+    4.  Install dependencies by running the following:
+
+        ``` {.sourceCode .none}
+        pod install --repo-update
+        ```
+
+        If you encounter an error message that begins
+        \"`[!] Failed to connect to GitHub to update the CocoaPods/Specs . . .`{.sourceCode}\",
+        and your internet connectivity is working, you might need to
+        [update openssl and
+        Ruby](https://stackoverflow.com/questions/38993527/cocoapods-failed-to-connect-to-github-to-update-the-cocoapods-specs-specs-repo/48962041#48962041).
+
+    5.  The command `pod install`{.sourceCode} creates a new workspace
+        file. Close your Xcode project and reopen it using
+        `./YOUR-PROJECT-NAME.xcworkspace`{.interpreted-text
+        role="file"}.
+
+          -------------- ------------------------------------------------------------
+          Use **ONLY**   Remember to always use
+          your           `./YOUR-PROJECT-NAME.xcworkspace`{.interpreted-text
+          .xcworkspace   role="file"} to open your Xcode project from now on.
+
+          -------------- ------------------------------------------------------------
+
+    6.  Rebuild your app after reopening it in the workspace to resolve
+        APIs from new libraries called in your code. This is a good
+        practice any time you add import statements.
+
+    Your app is now ready for you to add cloud-powered features. We
+    recommend
+    `adding analytics <add-aws-mobile-analytics>`{.interpreted-text
+    role="ref"} as your first feature.
+:::
+
+Next Steps {#add-aws-mobile-sdk-next-steps}
+----------
+
+> -   `Add Analytics <add-aws-mobile-analytics>`{.interpreted-text
+>     role="ref"}
+> -   `Add User Sign-in <add-aws-mobile-user-sign-in>`{.interpreted-text
+>     role="ref"}
+> -   `Add Push Notification <add-aws-mobile-push-notifications>`{.interpreted-text
+>     role="ref"}
+> -   `Add User File Storage <add-aws-mobile-user-data-storage>`{.interpreted-text
+>     role="ref"}
+> -   `Add Serverless Backend <add-aws-mobile-serverless-backend>`{.interpreted-text
+>     role="ref"}
+> -   `Add Cloud Logic <add-aws-mobile-cloud-logic>`{.interpreted-text
+>     role="ref"}
+> -   `Add Messaging <add-aws-mobile-messaging>`{.interpreted-text
+>     role="ref"}
